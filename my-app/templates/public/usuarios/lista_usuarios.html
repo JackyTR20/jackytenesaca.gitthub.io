@@ -25,7 +25,9 @@
             <th>Nombre</th>
             <th>Área</th>
             <th>Rol</th>
+            <th>Direccion</th>
             <th>Acciones</th>
+
           </tr>
         </thead>
         <tbody>
@@ -47,6 +49,7 @@
               {%endif%}
               {%endfor%}
             </td>
+            <td>{{ usuario.Dirección}}</td>
             <td>
               <a
                   href="/mi-perfil/{{usuario.id_usuario}}"

@@ -1,6 +1,6 @@
 {% extends 'public/base_cpanel.html' %}
 <!---->
-{% block title %}Crud con Python 🐍 | crear cuenta{% endblock %}
+{% block title %}Metasave Information 📦 | crear cuenta{% endblock %}
 <!---->
 {% block body %}
 
@@ -22,7 +22,7 @@
             method="POST">
             <div class="mb-3">
               <label for="cedula" class="form-label">
-                Cedula
+                Cédula
               </label>
               <input
                 type="text"
@@ -54,6 +54,18 @@
                   required
                   autofocus />
               </div>
+              <div class="mb-3 col-md-6">
+                <label for="name_surname" class="form-label">
+                  Dirección
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="Direccion"
+                  required
+                  autofocus />
+              </div>
+              
 
             </div>
             

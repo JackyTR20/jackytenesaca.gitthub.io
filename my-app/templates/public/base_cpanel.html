@@ -28,12 +28,32 @@
               {% if dataLogin.rol == 1 %}
               <div>
                 <h1>BIENVENIDO ADMINISTRADOR</h1>
+                <p>¡Gracias por iniciar sesión como administrador!</p>
+                <div class="d-flex justify-content-center align-items-center"></div>
+                <span class="app-brand-data">
+                  <img
+                    class="logo img-fluid rounded-square" 
+                    style="max-width: 10000px;" 
+                    src="{{ url_for('static', filename ='./assets/img/centro.png') }}"
+                    alt="data" />
+                </span>
               </div>
+            </div>
               {% endif %}
               {% if dataLogin.rol == 2 %}
               <div>
                 <h1>BIENVENIDO USUARIO</h1>
+                <p>¡Gracias por iniciar sesión como Usuario!</p>
+                <div class="d-flex justify-content-center align-items-center"></div>
+                <span class="app-brand-centro">
+                  <img
+                    class="logo img-fluid rounded-square" 
+                    style="max-width: 10000px;" 
+                    src="{{ url_for('static', filename ='./assets/img/centro.png') }}"
+                    alt="centro" />
+                </span>
               </div>
+            </div>
               {% endif %}
               <!--fin del bloque-->
               {% endblock %}
