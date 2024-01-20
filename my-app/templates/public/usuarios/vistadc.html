@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Asegúrate de que las rutas a los archivos Lightbox sean correctas -->
+  <link rel="stylesheet" href="ruta_a_lightbox/lightbox.min.css">
+  <script src="ruta_a_lightbox/lightbox-plus-jquery.min.js"></script>
+  <style>
+    body {
+      text-align: center; /* Centra el texto en el cuerpo de la página */
+    }
+
+    #galeria {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    #galeria a {
+      flex: 0 1 calc(50% - 20px);
+      max-width: 60%;
+    }
+
+    #galeria img {
+      width: 101%;
+      height: 750px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>{% block title %} Diseño Data Center{% endblock %}</h1>
+
+  <div id="galeria">
+    <a href="/static/assets/img/cap1.jpeg" data-lightbox="galeria" >
+      <img src="/static/assets/img/cap1.jpeg" alt="Imagen 1">
+    </a>
+
+    <a href="/static/assets/img/cap2.jpeg" data-lightbox="galeria">
+      <img src="/static/assets/img/cap2.jpeg" alt="Imagen 2">
+    </a>
+
+    <a href="/static/assets/img/cap3.jpeg" data-lightbox="galeria" >
+      <img src="/static/assets/img/cap3.jpeg" alt="Imagen 3">
+    </a>
+
+    <a href="/static/assets/img/cap4.jpeg" data-lightbox="galeria" >
+      <img src="/static/assets/img/cap4.jpeg" alt="Imagen 4">
+    </a>
+    <!-- Agrega más imágenes según sea necesario -->
+  </div>
+
+  <!-- Asegúrate de que el script de inicialización de Lightbox esté después de tu código HTML -->
+  <script>
+    lightbox.option({
+      'resizeDuration': 200,
+      'wrapAround': true
+    });
+  </script>
+</body>
+</html>
