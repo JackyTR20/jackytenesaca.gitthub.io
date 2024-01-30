@@ -1,74 +1,100 @@
 <!DOCTYPE html>
-<html
-  lang="es"
-  class="light-style layout-menu-fixed"
-  dir="ltr"
-  data-theme="theme-default"
-  data-assets-path="../assets/"
-  data-template="vertical-menu-template-free">
-  <head>
-    {% include 'public/includes/head.html' %}
-    <!---->
-    {% block customCSS %} {% endblock %}
-  </head>
-  <body>
-    {% include 'public/includes/pre_loader.html' %}
-    <!---->
-    {% include 'public/includes/navbar.html' %}
-    <div class="layout-wrapper layout-content-navbar">
-      <div class="layout-container">
-        {% include 'public/includes/menu_sidebar.html'%}
-        <div class="layout-page">
-          <div class="content-wrapper">
-            <div class="container-xxl flex-grow-1 container-p-y">
-              {% include 'public/includes/messages.html' %}
-              <!---->
-              {% block body %}
+<html lang="es" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="../assets/" data-template="vertical-menu-template-free">
 
-              {% if dataLogin.rol == 1 %}
-              <div>
-                <h1>BIENVENIDO ADMINISTRADOR</h1>
-                <p>¡Gracias por iniciar sesión como administrador!</p>
-                <div class="d-flex justify-content-center align-items-center"></div>
-                <span class="app-brand-data">
-                  <img
-                    class="logo img-fluid rounded-square" 
-                    style="max-width: 10000px;" 
-                    src="{{ url_for('static', filename ='./assets/img/centro.png') }}"
-                    alt="data" />
-                </span>
-              </div>
-            </div>
-              {% endif %}
-              {% if dataLogin.rol == 2 %}
-              <div>
-                <h1>BIENVENIDO USUARIO</h1>
-                <p>¡Gracias por iniciar sesión como Usuario!</p>
-                <div class="d-flex justify-content-center align-items-center"></div>
-                <span class="app-brand-centro">
-                  <img
-                    class="logo img-fluid rounded-square" 
-                    style="max-width: 10000px;" 
-                    src="{{ url_for('static', filename ='./assets/img/centro.png') }}"
-                    alt="centro" />
-                </span>
-              </div>
-            </div>
-              {% endif %}
-              <!--fin del bloque-->
-              {% endblock %}
-            </div>
+<head>
+  {% include 'public/includes/head.html' %}
+  <!-- Agrega el enlace a FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <!---->
+  {% block customCSS %}
+  <style>
+    body {
+      background-color: #d4e6e6; /* Azul pastel */
+    }
 
-            <div class="content-backdrop fade"></div>
+    p, ul, li {
+      font-size: 30px; /* Ajusta el tamaño del texto según sea necesario */
+    }
+
+    h1 {
+      font-size: 40px; /* Tamaño específico para h1 */
+    }
+
+    .welcome-icon {
+      font-size: 1em; /* Tamaño del icono */
+      margin-right: 15px; /* Espaciado entre el icono y el texto */
+    }
+  </style>
+  {% endblock %}
+</head>
+
+<body>
+  {% include 'public/includes/pre_loader.html' %}
+  <!---->
+  {% include 'public/includes/navbar.html' %}
+  <div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+      {% include 'public/includes/menu_sidebar.html'%}
+      <div class="layout-page">
+        <div class="content-wrapper">
+          <div class="container-xxl flex-grow-1 container-p-y">
+            {% include 'public/includes/messages.html' %}
+            <!---->
+            {% block body %}
+            {% if dataLogin.rol == 1 %}
+            <div>
+              <h1 style="font-size: 80px;">
+                <i class="bi bi-gear-fill"></i> <!-- Icono de bienvenida -->
+                BIENVENIDO ADMINISTRADOR
+              </h1>
+              <p>
+                En esta página encontrarás las siguientes opciones:
+              </p>
+              <ul>
+                <li>Generar Clave: Genera una clave para acceder a funciones administrativas.</li>
+                <li>Reporte Accesos: Visualiza y descarga informes de accesos registrados.</li>
+                <li>Departamentos: Gestiona y visualiza la lista de departamentos.</li>
+                <li>Lista de Usuarios: Accede a la lista completa de usuarios registrados.</li>
+                <li>Sensor de Temperatura: Información sobre la temperatura en el entorno.</li>
+                <li>Sensor de Humo: Estado del sensor de humo en el Data Center.</li>
+                <li>Registro Acceso Físico: Registra los accesos físicos mediante tarjetas RFID.</li>
+                <li>Vista general del Data Center: Explora la información general del Data Center.</li>
+                <li>Mi Perfil: Accede y modifica la información de tu perfil.</li>
+                <li>Salir: Cierra la sesión actual.</li>
+              </ul>
+            </div>
+            {% endif %}
+            {% if dataLogin.rol == 2 %}
+            <div>
+              <h1 style="font-size: 100px;">
+                <i class="fa-solid fa-user-tie"></i> <!-- Icono de bienvenida -->
+                BIENVENIDO USUARIO
+              </h1>
+              <p>
+                Como usuario, tu interfaz proporciona acceso a las siguientes opciones:
+              </p>
+              <ul>
+                <li>Generar Clave: Genera una clave para acceder a funciones específicas.</li>
+                <li>Vista general del Data Center: Explora la información general del Data Center.</li>
+                <li>Mi Perfil: Accede y modifica la información de tu perfil.</li>
+                <li>Salir: Cierra la sesión actual.</li>
+              </ul>
+            </div>
+            {% endif %}
+            {% endblock %}
           </div>
+
+          <div class="content-backdrop fade"></div>
         </div>
       </div>
-
-      <div class="layout-overlay layout-menu-toggle"></div>
     </div>
 
-    {% include 'public/includes/js.html' %}
-    <!--Custom JS-->
-    {% block customJS %} {% endblock %}
-  </body>
+    <div class="layout-overlay layout-menu-toggle"></div>
+  </div>
+
+  {% include 'public/includes/js.html' %}
+  <!--Custom JS-->
+  {% block customJS %} {% endblock %}
+</body>
+
 </html>

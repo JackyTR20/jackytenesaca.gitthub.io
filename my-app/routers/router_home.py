@@ -35,7 +35,7 @@ def borrarUsuario(id):
 def borrarArea(id_area):
     resp = eliminarArea(id_area)
     if resp:
-        flash('El Empleado fue eliminado correctamente', 'success')
+        flash('El area fue eliminada correctamente', 'success')
         return redirect(url_for('lista_areas'))
     else:
         flash('Hay usuarios que pertenecen a esta área', 'error')
@@ -99,3 +99,59 @@ def updateArea():
 
     return redirect(url_for('lista_areas'))
     
+#Datos sensor tempertura
+@app.route('/sensor-temperatura', methods=['GET'])
+def sensor_temp():
+    if 'conectado' in session:
+        try:
+            # Obtiene los datos de los sensores de temperatura desde la base de datos
+            datos_sensor_temperatura = sensor_temperatura()
+
+            # Renderiza la plantilla con los datos
+            return render_template('public/usuarios/sensortemperatura.html', datos_sensor_temperatura = sensor_temperatura(), dataLogin=dataLoginSesion())
+        except Exception as e:
+            flash(f"Error al obtener datos de sensor de temperatura: {e}", 'error')
+            return redirect(url_for('inicio'))
+    else:
+        flash('Primero debes iniciar sesión.', 'error')
+        return redirect(url_for('inicio'))
+
+
+#Datos sensor humo
+@app.route('/sensor-humo', methods=['GET'])
+def sensor_hum():
+    if 'conectado' in session:
+        try:
+            # Obtiene los datos de los sensores de temperatura desde la base de datos
+            datos_sensor_humo = sensor_humo()
+
+            # Renderiza la plantilla con los datos
+            return render_template('public/usuarios/sensorhumo.html', datos_sensor_humo = sensor_humo(), dataLogin=dataLoginSesion())
+        except Exception as e:
+            flash(f"Error al obtener datos de sensor de humo: {e}", 'error')
+            return redirect(url_for('inicio'))
+    else:
+        flash('Primero debes iniciar sesión.', 'error')
+        return redirect(url_for('inicio'))
+
+@app.route('/vista-dc')
+def vista_dc():
+    return render_template('public/usuarios/vistadc.html')
+
+#Datos tarjeta
+@app.route('/tarjeta-rfid', methods=['GET'])
+def tarjet():
+    if 'conectado' in session:
+        try:
+            # Obtiene los datos de los sensores de temperatura desde la base de datos
+            datos_tarjeta = tarjeta()
+
+            # Renderiza la plantilla con los datos
+            return render_template('public/usuarios/tarjeta_rfid.html', datos_tarjeta = tarjeta(), dataLogin=dataLoginSesion())
+        except Exception as e:
+            flash(f"Error al obtener datos registros de la tarjeta: {e}", 'error')
+            return redirect(url_for('inicio'))
+    else:
+        flash('Primero debes iniciar sesión.', 'error')
+        return redirect(url_for('inicio')) 
+

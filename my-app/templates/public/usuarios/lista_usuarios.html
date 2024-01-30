@@ -1,17 +1,17 @@
 {% extends 'public/base_cpanel.html' %}
 <!--Cambiando el title-->
-{% block title %}Crud - Python 🐍 | Lista de Usuarios{% endblock %}
+{% block title %}MetaSave Information 🖥️ | Lista de Usuarios{% endblock %}
 <!---->
 {% block body %} {% if (resp_usuariosBD) %}
 
 <div class="card content_consignaciones" style="border-radius: 0px !important">
   <section id="respuestaFiltroMes">
     <h2 class="text-center mt-5 mb-5">
-      Lista de Usuarios
+      Lista de Usuarios 👥
       <hr />
     </h2>
 
-    <p class="btn btn-success" style="margin-left: 10px;">
+    <p class="btn" style="background-color: #699494; color: white; border-color: #699494; margin-left: 10px;">
       <a href="./register-user">
         <span style="color: white;">Nuevo Usuario</span>
       </a>
@@ -23,11 +23,11 @@
           <tr style="background-color: #ddd">
             <th>Cédula</th>
             <th>Nombre</th>
+            <th>Direccion</th>
+            <th>Tarjeta</th>
             <th>Área</th>
             <th>Rol</th>
-            <th>Direccion</th>
             <th>Acciones</th>
-
           </tr>
         </thead>
         <tbody>
@@ -35,12 +35,14 @@
           <tr>
             <td>{{ usuario.cedula}}</td>
             <td>{{ usuario.nombre_usuario}} {{usuario.apellido_usuario}}</td> 
+            <td>{{ usuario.Direccion}}</td> 
+            <td>{{ usuario.Tarjeta}}</td> 
             <td>
               {%for area in areas%}
               {%if area.id_area == usuario.id_area%}
               {{area.nombre_area}}
               {%endif%}
-              {%endfor%}
+              {%endfor%} 
             </td>
             <td>
               {% for rol in roles%}
@@ -49,12 +51,12 @@
               {%endif%}
               {%endfor%}
             </td>
-            <td>{{ usuario.Dirección}}</td>
+            
+            
             <td>
               <a
                   href="/mi-perfil/{{usuario.id_usuario}}"
-                  class="btn btn-success btn-sm"
-                  tooltip="Actualizar Registro">
+                  class="btn btn-sm" style="background-color: #699494; color: white; border-color: #699494; margin-left: 10px;">
                   <i class="bi bi-arrow-clockwise"></i>
                   Actualizar
                 </a>

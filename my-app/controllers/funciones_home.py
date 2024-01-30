@@ -121,14 +121,13 @@ def buscarAreaBD(search):
     except Exception as e:
         print(f"Ocurrió un error en def buscarEmpleadoBD: {e}")
         return []
-
-
+    
 # Lista de Usuarios creados
 def lista_usuariosBD():
     try:
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as cursor:
-                querySQL = "SELECT id_usuario, cedula, nombre_usuario, apellido_usuario, id_area, id_rol, estado_civil, direccion FROM usuarios"
+                querySQL = "SELECT id_usuario, cedula, nombre_usuario, apellido_usuario, id_area, id_rol, Direccion, Tarjeta FROM usuarios"
                 cursor.execute(querySQL,)
                 usuariosBD = cursor.fetchall()
         return usuariosBD
@@ -147,7 +146,6 @@ def lista_areasBD():
     except Exception as e:
         print(f"Error en lista_areas : {e}")
         return []
-    
 
 # Eliminar usuario
 def eliminarUsuario(id):
@@ -277,7 +275,7 @@ def sensor_temperatura():
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as cursor:
                 # Modifica la consulta según la estructura de tu base de datos
-                querySQL = "SELECT id_sensor, fecha_hora_medicion, humedad, temperatura FROM sensor_temperatura"
+                querySQL = "SELECT fecha_hora_medicion, temperatura FROM Sensor_temperatura_DHT11 ORDER BY fecha_hora_medicion DESC"
                 cursor.execute(querySQL)
                 datos_sensor_temperatura = cursor.fetchall()
         return datos_sensor_temperatura
@@ -290,38 +288,25 @@ def sensor_humo():
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as cursor:
                 # Modifica la consulta según la estructura de tu base de datos
-                querySQL = "SELECT id_sensor, fecha_hora_medicion, nivel_humo, nivel_gas FROM sensor_humo"
+                querySQL = "SELECT fecha_hora_medicion, nivel_humo FROM Sensor_humo_MQ2 ORDER BY fecha_hora_medicion DESC"
                 cursor.execute(querySQL)
                 datos_sensor_humo = cursor.fetchall()
         return datos_sensor_humo
     except Exception as e:
         print(f"Error al obtener datos de sensor de humo: {e}")
         return []
-    
-#Eliminar registro sensor humo
-def eliminarSensorHumo(id_sensor):
+
+
+def tarjeta():
     try:
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as cursor:
-                querySQL = "DELETE FROM sensor_humo WHERE id_sensor=%s"
-                cursor.execute(querySQL, (id_sensor,))
-                conexion_MySQLdb.commit()
-                resultado_eliminar = cursor.rowcount
-        return resultado_eliminar
+                # Modifica la consulta según la estructura de tu base de datos
+                querySQL = "SELECT nombre, tarjeta, id_usuario, fecha_hora, area, mensaje FROM Tarjeta_RFID ORDER BY fecha_hora DESC"
+                cursor.execute(querySQL)
+                
+                datos_tarjeta = cursor.fetchall()
+        return datos_tarjeta
     except Exception as e:
-        print(f"Error en eliminarSensorHumo: {e}")
-        return []
-    
-#Eliminar registro sensor temperauta
-def eliminarSensorTemperatura(id_sensor):
-    try:
-        with connectionBD() as conexion_MySQLdb:
-            with conexion_MySQLdb.cursor(dictionary=True) as cursor:
-                querySQL = "DELETE FROM sensor_temperatura WHERE id_sensor=%s"
-                cursor.execute(querySQL, (id_sensor,))
-                conexion_MySQLdb.commit()
-                resultado_eliminar = cursor.rowcount
-        return resultado_eliminar
-    except Exception as e:
-        print(f"Error en eliminarSensorTemperatura: {e}")
+        print(f"Error al obtener registros de la tarjeta: {e}")
         return []

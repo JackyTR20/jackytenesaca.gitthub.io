@@ -1,13 +1,13 @@
 {% extends 'public/base_cpanel.html' %}
 <!--Cambiando el title-->
-{% block title %}Crud con Python 🐍 | Lista de Áreas{% endblock %}
+{% block title %}MetaSave Information 🖥️ | Lista de Áreas{% endblock %}
 <!--Inicio del block-->
 {% block body %}
 
 <div class="card" style="border-radius: 0px !important">
   <div class="row justify-content-center mb-2">
-    <div class="col-md-12 mb-4">
-      <h3 class="text-center mt-5 mb-3">LISTA DE ÁREAS</h3>
+    <div class="col-md-12 mb-4"> 
+      <h3 class="text-center mt-5 mb-3">LISTA DE ÁREAS 📍 </h3>
       <hr />
     </div>
     <!--CAMPO PARA CREAR AREAS-->
@@ -20,7 +20,7 @@
             <input type="text" name="nombre_area" id="nombreSeleccionado" class="form-control"
               placeholder="Nombre seleccionado" />
             <div class="botones mt-3">
-              <button id="botonGuardar" class="btn btn-outline-primary btn-sm" type="submit">
+              <button id="botonGuardar" class="btn btn-sm" style="background-color: #699494; color: white; border-color: #699494; margin-left: 10px;" type="submit">
                 <!-- Cambia el tipo de botón a 'submit' para enviar el formulario -->
                 Crear
               </button>
@@ -79,7 +79,8 @@
               <td>{{ area.nombre_area }}</td>
 
               <td width="10px">
-                <a onclick="editar('{{area.nombre_area}}', '{{area.id_area}}')" class="btn btn-success btn-sm" tooltip="Actualizar Registro">
+                <a onclick="editar('{{area.nombre_area}}', '{{area.id_area}}')" class="btn btn-sm" style="background-color: #699494; color: white; border-color:
+                 #699494; margin-left: 10px;" tooltip="Actualizar Registro">
                   <i class="bi bi-arrow-clockwise"></i>
                   Actualizar
                 </a>

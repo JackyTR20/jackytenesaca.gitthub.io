@@ -1,0 +1,47 @@
+{% extends 'public/base_cpanel.html' %}
+
+{% block title %}MetaSave Information🖥️ | Sensores de Humo y Gas {% endblock %}
+
+{% block body %}
+  <div class="card content_consignaciones" style="border-radius: 0px !important">
+    <section id="respuestaFiltroMes">
+      <h2 class="text-center mt-5 mb-5">
+        Sensor de humo 💨
+        <hr />
+      </h2>
+
+      <button class="btn" style="background-color: #699494; color: white; border-color: #699494; margin-left: 10px; margin-top: -40px;" id="actualizarBtn">
+        Actualizar
+      </button>
+      
+      <div class="table-responsive text-nowrap">
+        <table class="table table-hover">
+          <thead>
+            <tr style="background-color: #ddd">
+              <th>Fecha y Hora de Medición</th>
+              <th>Nivel de humo</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for sensor_humo_mq2 in datos_sensor_humo %}
+              <tr>
+                <td>{{ sensor_humo_mq2.fecha_hora_medicion }}</td>
+                <td>{{ sensor_humo_mq2.nivel_humo }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+ <!-- Script Custom -->
+  {% block customJS %}
+  <script>
+    document.getElementById('actualizarBtn').addEventListener('click', function() {
+      // Recargar la página actual
+      location.reload();
+    });
+  </script>
+  {% endblock %}
+{% endblock %}

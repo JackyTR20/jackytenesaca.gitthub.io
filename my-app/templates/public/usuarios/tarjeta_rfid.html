@@ -1,0 +1,72 @@
+{% extends 'public/base_cpanel.html' %}
+
+{% block title %}MetaSave Information 🖥️ | Tarjeta {% endblock %}
+
+{% block body %}
+  <div class="card content_consignaciones" style="border-radius: 0px !important">
+    <section id="respuestaFiltroMes" class="mt-3">
+      <h2 class="text-center mt-5 mb-5">
+        Registros de Acceso Físico
+        <hr />
+      </h2>
+
+      <div class="d-flex justify-content-start mb-3">
+        <a href="#" id="descargarExcelBtn"  class="btn" style="background-color: #699494; color: white; border-color: #699494; margin-left: 10px; margin-top: -40px;" id="actualizarBtn">
+            <i class="bi bi-file-earmark-excel"></i>
+            Descargar Reportes
+        </a>
+      </div>
+
+      <div class="table-responsive text-nowrap">
+        <table class="table table-hover">
+          <thead>
+            <tr style="background-color: #ddd">
+              <th>ID_Usuario</th>
+              <th>Nombre y Apellido</th>
+              <th>UID Tarjeta</th>
+              <th>Fecha-hora acceso</th>
+              <th>Departamento</th>
+              <th>Mensaje</th>
+              <!-- La columna de Acciones se ha eliminado -->
+            </tr>
+          </thead>
+          <tbody>
+            {% for Tarjeta_RFID in datos_tarjeta %}
+              <tr>
+                <td>{{ Tarjeta_RFID.id_usuario}}</td>
+                <td>{{ Tarjeta_RFID.nombre}} </td>
+                <td>{{ Tarjeta_RFID.tarjeta }}</td>
+                <td>{{ Tarjeta_RFID.fecha_hora.strftime('%d/%m/%Y %H:%M:%S') }}</td>
+                <td>{{ Tarjeta_RFID.area }}</td>
+                {% if Tarjeta_RFID.mensaje == 'Acceso denegado' %}
+                  <td style="color: red;">{{ Tarjeta_RFID.mensaje }}</td>
+                {% elif Tarjeta_RFID.mensaje == 'Acceso permitido' %}
+                  <td style="color: green;">{{ Tarjeta_RFID.mensaje }}</td>
+                {% else %}
+                  <td>{{ Tarjeta_RFID.mensaje }}</td>
+                {% endif %}
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <!-- Script Custom -->
+  {% block customJS %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
+  <script>
+    document.getElementById('descargarExcelBtn').addEventListener('click', function() {
+      // Obtener la información de la tabla
+      var table = document.querySelector('.table');
+      var data = XLSX.utils.table_to_sheet(table);
+
+      // Crear el libro de Excel y guardarlo como archivo
+      var libro = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(libro, data, 'RegistrosTarjeta');
+      XLSX.writeFile(libro, 'registros_tarjeta.xlsx');
+    });
+  </script>
+  {% endblock %}
+{% endblock %}

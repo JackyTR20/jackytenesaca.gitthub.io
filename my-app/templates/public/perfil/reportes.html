@@ -1,12 +1,12 @@
 {% extends 'public/base_cpanel.html' %}
 <!--Cambiando el title-->
-{% block title %}Crud con Python 🐍 | Reportes {% endblock %}
+{% block title %}MetaSave Information 🖥️ | Reportes {% endblock %}
 <!--Inicio del block-->
 {% block body %}
 <div class="card">
   <div class="row ">
     <div class="col-md-12 mb-4">
-      <h3 class="text-center mt-5 mb-3">REPORTES ACCESO</h3>
+      <h3 class="text-center mt-5 mb-3">REPORTES ACCESO 📝 </h3>
       <hr />
     </div>
 
@@ -14,15 +14,15 @@
   <div class="row justify-content-center mb-3">
     <div class="col-md-auto">
       <div class="card justify-content-center"
-        style="width: 90%; align-self: center; background-color: rgb(163, 241, 181)">
+        style="width: 90%; align-self: center; background-color: #caecff">
         <div class="row p-3 text-center" style="margin-bottom: -18px;">
           <div class="col-md-6">
-            <p class="acceso"><b>Fecha Acceso Activo:</b></p>
-            <p class="acceso" style="margin-top: -10px;">{{lastAccess.fecha}}</p>
+            <p class="acceso" style="font-size: 18px;"><b>Fecha Acceso Activo:</b></p>
+            <p class="acceso" style="font-size: 16px; margin-top: -10px;">{{lastAccess.fecha}}</p>
           </div>
           <div class="col-md-6">
-            <p class="acceso"><b>Clave Acceso Activo:</b></p>
-            <p class="acceso" style="margin-top: -10px;">{{lastAccess.clave}}</p>
+            <p class="acceso" style="font-size: 18px;" ><b>Clave Acceso Activo:</b></p>
+            <p class="acceso" style="font-size: 16px; margin-top: -10px;">{{lastAccess.clave}}</p>
           </div>
         </div>
 
@@ -30,7 +30,7 @@
     </div>
 
     <div class="col-md-auto align-self-center">
-      <a href="/descargar-informe-accesos" class="btn btn-success btn-sm"
+      <a href="/descargar-informe-accesos" class="btn btn-sm" style="background-color: #699494; color: white; border-color: #699494; margin-left: 10px;"
         tooltip="Reporte de accesos">
         <i class="bi bi-arrow-clockwise"></i>
         Reporte
@@ -57,7 +57,7 @@
           <tr>
             <td>{{ reporte.id_acceso}}</td>
             <td>{{ reporte.cedula}}</td>
-            <td>{{ reporte.fecha}}</td>
+            <td>{{ reporte.fecha.strftime('%d/%m/%Y %H:%M:%S')}}</td>
             <td>{{ reporte.nombre_area}}</td>
             <td>{{ reporte.clave}}</td>
           </tr>

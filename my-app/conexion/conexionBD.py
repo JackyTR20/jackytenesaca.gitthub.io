@@ -1,30 +1,27 @@
-
-
-# Importando Libreria mysql.connector para conectar Python con MySQL
 import mysql.connector
 
-
 def connectionBD():
-    print("ENTRO A LA CONEXION")
-    try:
-        # connection = mysql.connector.connect(
-        connection = mysql.connector.connect(
-            host="monorail.proxy.rlwy.net",
-                #host="viaduct.proxy.rlwy.net",
-            port=29508,
-            user="root",
-            passwd="146HF16BgEH1Fefaebhf32acdh51B4gc",
-                #passwd="-D2eD6aDb5Bg6dEbhAAeBB6gd3EheaBg",
-            database="railway",
-                #database="crud_python",
-            charset='utf8mb4',
-            collation='utf8mb4_unicode_ci',
-            raise_on_warnings=True
+    # Configuración de las credenciales
+    credenciales = {
+        "host": "35.227.152.71",
+        "user": "root",
+        "password": "sky2003-04",
+        "database": "proyecto_integrador",
+        "charset": "utf8mb4",
+        "collation": "utf8mb4_unicode_ci",
+    }
 
-        )
-        if connection.is_connected():
-            print("Conexión exitosa a la BD")
-            return connection
+    try:
+        # Conexión a la base de datos
+        conexion = mysql.connector.connect(**credenciales)
+
+        if conexion.is_connected():
+            print("Conexión exitosa a la base de datos")
+            return conexion
 
     except mysql.connector.Error as error:
-        print(f"No se pudo conectar: {error}")
+        print(f"No se pudo conectar a la base de datos: {error}")
+
+# Ejemplo de uso
+conexion_bd = connectionBD()
+# Ahora puedes realizar operaciones en la base de datos usando la conexión

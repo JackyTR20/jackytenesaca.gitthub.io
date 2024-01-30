@@ -1,6 +1,6 @@
 {% extends 'public/base_cpanel.html' %}
 <!---->
-{% block title %}Metasave Information 📦 | crear cuenta{% endblock %}
+{% block title %}MetaSave Information 🖥️ | crear cuenta{% endblock %}
 <!---->
 {% block body %}
 
@@ -22,7 +22,7 @@
             method="POST">
             <div class="mb-3">
               <label for="cedula" class="form-label">
-                Cédula
+                Cedula
               </label>
               <input
                 type="text"
@@ -56,12 +56,24 @@
               </div>
               <div class="mb-3 col-md-6">
                 <label for="name_surname" class="form-label">
-                  Dirección
+                  Direccion
                 </label>
                 <input
                   type="text"
                   class="form-control"
                   name="Direccion"
+                  required
+                  autofocus />
+              </div>
+
+              <div class="mb-3 col-md-6">
+                <label for="name_surname" class="form-label">
+                  Tarjeta
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="Tarjeta"
                   required
                   autofocus />
               </div>

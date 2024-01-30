@@ -6,52 +6,60 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Asegúrate de que las rutas a los archivos Lightbox sean correctas -->
   <link rel="stylesheet" href="ruta_a_lightbox/lightbox.min.css">
+  <!-- Enlace a la hoja de estilos de Bootstrap 4 -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
   <script src="ruta_a_lightbox/lightbox-plus-jquery.min.js"></script>
+  <!-- Scripts de Bootstrap al final del cuerpo -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <!-- Tu estilo personalizado aquí -->
   <style>
     body {
       text-align: center; /* Centra el texto en el cuerpo de la página */
     }
 
-    #galeria {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-
-    #galeria a {
-      flex: 0 1 calc(50% - 20px);
-      max-width: 60%;
-    }
-
-    #galeria img {
-      width: 101%;
-      height: 750px;
-      object-fit: cover;
-      border-radius: 8px;
+    .carousel-inner img {
+      width: 60%;
+      height: auto;
     }
   </style>
 </head>
 <body>
   <h1>{% block title %} Diseño Data Center{% endblock %}</h1>
 
-  <div id="galeria">
-    <a href="/static/assets/img/cap1.jpeg" data-lightbox="galeria" >
-      <img src="/static/assets/img/cap1.jpeg" alt="Imagen 1">
+  <div id="galeria" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <a href="/static/assets/img/cap1.png" data-lightbox="galeria">
+          <img src="/static/assets/img/cap1.png" alt="Imagen 1">
+        </a>
+      </div>
+      <div class="carousel-item">
+        <a href="/static/assets/img/cap2.png" data-lightbox="galeria">
+          <img src="/static/assets/img/cap2.png" alt="Imagen 2">
+        </a>
+      </div>
+      <div class="carousel-item">
+        <a href="/static/assets/img/cap3.png" data-lightbox="galeria">
+          <img src="/static/assets/img/cap3.png" alt="Imagen 3">
+        </a>
+      </div>
+      <div class="carousel-item">
+        <a href="/static/assets/img/cap.4.png" data-lightbox="galeria">
+          <img src="/static/assets/img/cap.4.png" alt="Imagen 4">
+        </a>
+      </div>
+      <!-- Agrega más imágenes según sea necesario -->
+    </div>
+    <a class="carousel-control-prev" href="#galeria" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Anterior</span>
     </a>
-
-    <a href="/static/assets/img/cap2.jpeg" data-lightbox="galeria">
-      <img src="/static/assets/img/cap2.jpeg" alt="Imagen 2">
+    <a class="carousel-control-next" href="#galeria" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Siguiente</span>
     </a>
-
-    <a href="/static/assets/img/cap3.jpeg" data-lightbox="galeria" >
-      <img src="/static/assets/img/cap3.jpeg" alt="Imagen 3">
-    </a>
-
-    <a href="/static/assets/img/cap4.jpeg" data-lightbox="galeria" >
-      <img src="/static/assets/img/cap4.jpeg" alt="Imagen 4">
-    </a>
-    <!-- Agrega más imágenes según sea necesario -->
   </div>
 
   <!-- Asegúrate de que el script de inicialización de Lightbox esté después de tu código HTML -->

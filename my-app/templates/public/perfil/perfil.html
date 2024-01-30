@@ -1,27 +1,15 @@
 {% extends 'public/base_cpanel.html' %}
 <!--Cambiando el title-->
-{% block title %}Metasave Information 📦 | Perfil {% endblock %}
+{% block title %} MetaSave Information 🖥️ {% endblock %}
 <!--Inicio del block-->
 {% block body %}
 <div class="card" style="border-radius: 0px !important">
   <div class="row justify-content-center mb-2">
-    <div class="col-md-2 text-center align-self-center">
-      <span class="app-brand-logo">
-        <img
-          class="logo img-fluid rounded-circle" 
-          style="max-width: 100px;" 
-          src="{{ url_for('static', filename ='./assets/img/perfil.png') }}"
-          alt="Logo" />
-      </span>
-    </div>
-    <div class="col-md-10 text-center">
-      <h3 class="mt-5 mb-3">PERFIL </h3>
+    <div class="col-md-12">
+      <h3 class="text-center mt-5 mb-3">MI PERFIL</h3>
       <hr />
-      <!-- Aquí puedes agregar más contenido relacionado con el perfil -->
     </div>
   </div>
-</div>
-
 
   <div class="row justify-content-center mb-2">
     <div class="col-md-6">
@@ -55,6 +43,23 @@
               type="text"
               name="surname"
               value="{{ info_perfil_session[0]['apellido_usuario'] }}"
+              />
+          </div>
+          <div class="mb-3">
+            <label for="Direccion" class="form-label">Direccion</label>
+            <input
+              class="form-control"
+              type="text"
+              name="Direccion"
+              value="{{ info_perfil_session[0]['Direccion'] }}"
+              />
+           <div class="mb-3">
+            <label for="Tarjeta" class="form-label">Tarjeta</label>
+            <input
+              class="form-control"
+              type="text"
+              name="Tarjeta"                
+              value="{{ info_perfil_session[0]['Tarjeta'] }}"
               />
           </div>
           <div>
